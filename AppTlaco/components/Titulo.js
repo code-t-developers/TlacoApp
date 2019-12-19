@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
     estiloTitulo: {
         fontSize : 26,
         fontWeight: "bold",
-        textAlign: 'center'
+        textAlign: 'center',
+        padding: 20,
+        paddingTop: 0
     }
 });
 export default Titulo;
