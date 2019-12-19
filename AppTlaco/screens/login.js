@@ -72,11 +72,13 @@ const Login = props =>{
     <Text style={styles.loginButtonBelowText1}>OR</Text>
     <View style={styles.hairline} />
 
-    <TouchableOpacity activeOpacity={.5}>
+     <TouchableOpacity activeOpacity={.5}>
     <View style={styles.button}>
     <Text style={styles.buttonText}>Ingresar Con Google</Text>
     </View>
+    </TouchableOpacity>
 
+    <TouchableOpacity activeOpacity={.5}>
     <View style={styles.button}>
     <Text style={styles.buttonText}>Ingresar Con Facebook</Text>
     </View>
