@@ -24,7 +24,7 @@ import { Trans } from 'react-i18next';
 
 const Monumento = props => {
     return (
-        <ScrollView style = {styles.contenedorComponentes}> 
+        <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}> 
             
             <Image
                 style={styles.estiloImagen}
@@ -75,8 +75,12 @@ const Monumento = props => {
                 </Text>
             </View>
 
+            <View style = {styles.contenedorTexto}>
+                <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
+            </View>
+
             <View style = {styles.contenedorBotones}>
-                <Botones title = "Escanear"/>
+                <Botones title = "Escanear de nuevo"/>
                 <Botones title = "Inicio"/>
             </View>
             
@@ -88,7 +92,7 @@ const styles = StyleSheet.create({
     contenedorBotones: {
         flexDirection: 'row',
         //width: '100%',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         //marginVertical: '5%',
         alignContent: 'center',
         paddingTop: 20
@@ -121,6 +125,7 @@ const styles = StyleSheet.create({
 
     contenedorComponentes: {
         width: '130%',
+        height: '100%'
     }
 });
 

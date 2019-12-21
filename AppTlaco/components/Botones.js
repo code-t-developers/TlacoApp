@@ -21,12 +21,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: '10%',
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 20
+        borderRadius: 20,
+       // maxWidth: '70%'
     },
 
     textoBotones: {
         color: "#FFF",
-        fontSize: 18
+        fontSize: 18,
+        textAlign: 'center'
     },
 });
 
