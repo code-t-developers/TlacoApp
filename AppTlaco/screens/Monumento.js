@@ -3,6 +3,7 @@ import { StyleSheet, Text, ScrollView, Image, FlatList, View } from 'react-nativ
 import { WebView } from 'react-native-webview';
 import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
+import WebComponent from '../components/WebComponent';
 import { Trans } from 'react-i18next';
 
 
@@ -79,11 +80,48 @@ const Monumento = props => {
                 <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
             </View>
 
+            {/*
+
+            <View style = {{height: 130, marginTop: 20}}>
+                <ScrollView horizontal = {true}>
+                    <View style = {{height: 130, width: 130, marginLeft: 20, borderWidth: 0.5, justifyContent: 'space-around'}}>
+                        <View style = {{flex: 2}}>
+                            <Image
+                                style = {{flex: 1, width: null, height: null, resizeMode: 'cover'}}
+                                source={require('../images/sanMiguelito.jpg')}
+                            />
+                        </View>
+
+                        <View style = {{flex: 2}}>
+                            <Image
+                                style = {{flex: 1, width: null, height: null, resizeMode: 'cover'}}
+                                source={require('../images/sanMiguelito.jpg')}
+                            />
+                        </View>
+
+                        <View style = {{flex: 2}}>
+                            <Image
+                                style = {{flex: 1, width: null, height: null, resizeMode: 'cover'}}
+                                source={require('../images/sanMiguelito.jpg')}
+                            />
+                        </View>
+                        
+                    </View>
+                </ScrollView>
+            </View>
+    
+            <WebComponent/>
+
+            */}
+            
+            <View style = {styles.contenedorTexto}>
+                <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
+            </View>
+
             <View style = {styles.contenedorBotones}>
                 <Botones title = "Escanear de nuevo"/>
                 <Botones title = "Inicio"/>
             </View>
-            
         </ScrollView>
     );
 };
@@ -99,16 +137,18 @@ const styles = StyleSheet.create({
     },
 
     estiloImagen: {
-        width: 200, 
-        height: 200,
+        width: 250, 
+        height: 250,
         alignSelf: 'center',
         marginVertical: 20,
-        opacity: 0.9
+        opacity: 0.9,
+        borderRadius: 8
     },
 
     contenedorTexto: {
         backgroundColor: '#DD763B',
-        padding: 3
+        padding: 3,
+        borderRadius: 5
     },
 
     estiloTexto : {
