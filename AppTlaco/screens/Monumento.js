@@ -1,10 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, ScrollView, Image, FlatList, View } from 'react-native';
-import { WebView } from 'react-native-webview';
+import React, { useState } from 'react';
+import { StyleSheet, Text, ScrollView, Image, FlatList, View, Alert, Button } from 'react-native';
+//import { WebView } from 'react-native-webview';
 import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
-import WebComponent from '../components/WebComponent';
-import { Trans } from 'react-i18next';
+import ModalsAppTlaco from '../modals/modalsAppTlaco';
+//import WebComponent from '../components/WebComponent';
+//import { Trans } from 'react-i18next';
 
 
 /*class WebVideo extends Component {
@@ -22,8 +23,22 @@ import { Trans } from 'react-i18next';
     return <Trans><Text>Bienvenido a React</Text></Trans>;
   }*/
   
-
 const Monumento = props => {
+    const [confirmed, setConfirmed] = useState(false);
+
+  const confirm = () => {
+    
+    setConfirmed(true);
+  };
+
+
+  let comercial;
+
+  if (confirmed) {
+    comercial = (
+     <ModalsAppTlaco state={true}/>
+    );
+  }
     return (
         <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}> 
             
@@ -35,7 +50,7 @@ const Monumento = props => {
             <Titulo titulo = "Iglesia de San Miguel Arcángel"/>
 
             <View style = {styles.contenedorTexto}>
-                <Trans><Text style = {styles.estiloSeparador}>Welcome to React</Text></Trans>
+                <Text style = {styles.estiloSeparador}>Welcome to React</Text>
             </View>
 
             <View >
@@ -80,48 +95,27 @@ const Monumento = props => {
                 <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
             </View>
 
-            {/*
-
-            <View style = {{height: 130, marginTop: 20}}>
-                <ScrollView horizontal = {true}>
-                    <View style = {{height: 130, width: 130, marginLeft: 20, borderWidth: 0.5, justifyContent: 'space-around'}}>
-                        <View style = {{flex: 2}}>
-                            <Image
-                                style = {{flex: 1, width: null, height: null, resizeMode: 'cover'}}
-                                source={require('../images/sanMiguelito.jpg')}
-                            />
-                        </View>
-
-                        <View style = {{flex: 2}}>
-                            <Image
-                                style = {{flex: 1, width: null, height: null, resizeMode: 'cover'}}
-                                source={require('../images/sanMiguelito.jpg')}
-                            />
-                        </View>
-
-                        <View style = {{flex: 2}}>
-                            <Image
-                                style = {{flex: 1, width: null, height: null, resizeMode: 'cover'}}
-                                source={require('../images/sanMiguelito.jpg')}
-                            />
-                        </View>
-                        
-                    </View>
-                </ScrollView>
-            </View>
-    
-            <WebComponent/>
-
-            */}
+            
             
             <View style = {styles.contenedorTexto}>
                 <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
             </View>
 
             <View style = {styles.contenedorBotones}>
-                <Botones title = "Escanear de nuevo"/>
-                <Botones title = "Inicio"/>
+                <Botones title = "Escanear de nuevo" 
+                 
+                    />
+                <Button
+                    raised
+                    icon = {{name: 'close'}}
+                    title = "Alerta"
+                    backgroundColor = 'blue'
+                    onPress={confirm}
+                    
+                />
+                <Botones title = "Inicio" />
             </View>
+            {comercial}
         </ScrollView>
     );
 };
