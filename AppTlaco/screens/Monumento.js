@@ -105,14 +105,6 @@ const Monumento = props => {
                 <Botones title = "Escanear de nuevo" 
                  
                     />
-                <Button
-                    raised
-                    icon = {{name: 'close'}}
-                    title = "Alerta"
-                    backgroundColor = 'blue'
-                    onPress={confirm}
-                    
-                />
                 <Botones title = "Inicio" />
             </View>
             {comercial}
