@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
 
     estiloImagen: {
-        width: 250, 
+        width: '100%', 
         height: 250,
         alignSelf: 'center',
         marginVertical: 20,
@@ -150,8 +150,9 @@ const styles = StyleSheet.create({
     },
 
     contenedorComponentes: {
-        width: '130%',
-        height: '100%'
+        width: '90%',
+        height: '100%',
+        margin: '5%'
     }
 });
 

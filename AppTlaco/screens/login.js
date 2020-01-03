@@ -56,7 +56,12 @@ const Login = props =>{
     underlineColorAndroid="transparent"
     />
     </View>
-    <TouchableOpacity activeOpacity={.5}>
+    <TouchableOpacity activeOpacity={.5} 
+    onPress = {() => {
+      props.navigation.navigate({
+        routeName: 'Monumentos'
+      });
+    }}>
     <View style={styles.button}>
     <Text style={styles.buttonText}>Ingresar</Text>
     </View>
@@ -152,7 +157,7 @@ const Login = props =>{
     },
 
     loginButtonBelowText1: {
-      fontFamily: 'AvenirNext-Bold',
+      //fontFamily: 'AvenirNext-Bold',
       fontSize: 14,
       paddingHorizontal: 5,
       alignSelf: 'center',
