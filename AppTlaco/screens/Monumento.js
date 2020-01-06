@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, ScrollView, Image, FlatList, View, Alert, Button } from 'react-native';
+import { StyleSheet, Text, ScrollView, Image, FlatList, View, Alert, Button, Dimensions } from 'react-native';
 import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
 import ModalsAppTlaco from '../modals/modalsAppTlaco';
 //import { Trans } from 'react-i18next';
 
 const screenWidth = Dimensions.get('window').width;
+
 const Monumento = props => {
     const [confirmed, setConfirmed] = useState(false);
 
@@ -133,9 +134,7 @@ const styles = StyleSheet.create({
         width : screenWidth - 23, 
         height: 250,
         alignSelf: 'center',
-        marginVertical: 20,
         opacity: 0.9,
-        borderRadius: 8
     },
 
     contenedorTexto: {
@@ -159,7 +158,8 @@ const styles = StyleSheet.create({
     contenedorComponentes: {
         width: '90%',
         height: '100%',
-        margin: '5%'
+        margin: '5%',
+        alignContent: 'center'
     }
 });
 
