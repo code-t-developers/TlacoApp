@@ -1,28 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, ScrollView, Image, FlatList, View, Alert, Button } from 'react-native';
-//import { WebView } from 'react-native-webview';
 import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
 import ModalsAppTlaco from '../modals/modalsAppTlaco';
-//import WebComponent from '../components/WebComponent';
 //import { Trans } from 'react-i18next';
 
-
-/*class WebVideo extends Component {
-    render() {
-      return (
-        <WebView
-          originWhitelist={['*']}
-          source={{ html: '<h1>Hello world</h1>' }}
-        />
-      );
-    }
-}*/
-
- /*function MyComponent () {
-    return <Trans><Text>Bienvenido a React</Text></Trans>;
-  }*/
-  
+const screenWidth = Dimensions.get('window').width;
 const Monumento = props => {
     const [confirmed, setConfirmed] = useState(false);
 
@@ -42,10 +25,40 @@ const Monumento = props => {
     return (
         <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}> 
             
-            <Image
-                style={styles.estiloImagen}
-                source={require('../images/sanMiguelito.jpg')}
-            />
+            <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center'}}>
+
+                <View style = {{paddingEnd : 10}}>
+                    <Image
+                        style={styles.estiloImagen}
+                        source={require('../images/sanMiguelito.jpg')}
+                    />
+                    <View style = {{borderWidth: 0.3, flex: 1, paddingLeft: 10, opacity: 0.7}}>
+                        <Text>Por: Shivo dd</Text>
+                    </View>
+                </View>
+
+                <View style = {{paddingEnd : 10}}>
+                    <Image
+                        style={styles.estiloImagen}
+                        source={require('../images/sanMiguelito.jpg')}
+                    />
+                    <View style = {{borderWidth: 0.3, flex: 1, paddingLeft: 10, opacity: 0.7}}>
+                        <Text>Por: Shivo</Text>
+                    </View>
+                </View>
+                
+
+                <View style = {{paddingEnd : 10}}>
+                    <Image
+                        style={styles.estiloImagen}
+                        source={require('../images/sanMiguelito.jpg')}
+                    />
+                    <View style = {{borderWidth: 0.3, flex: 1, paddingLeft: 10, opacity: 0.7}}>
+                        <Text>Por: Shivo ll</Text>
+                    </View>
+                </View>
+                
+            </ScrollView>
 
             <Titulo titulo = "Iglesia de San Miguel Arcángel"/>
 
@@ -95,12 +108,6 @@ const Monumento = props => {
                 <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
             </View>
 
-            
-            
-            <View style = {styles.contenedorTexto}>
-                <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
-            </View>
-
             <View style = {styles.contenedorBotones}>
                 <Botones title = "Escanear de nuevo" 
                  
@@ -123,7 +130,7 @@ const styles = StyleSheet.create({
     },
 
     estiloImagen: {
-        width: '100%', 
+        width : screenWidth - 23, 
         height: 250,
         alignSelf: 'center',
         marginVertical: 20,
