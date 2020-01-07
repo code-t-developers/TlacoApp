@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, ScrollView, Image, FlatList, View, Alert, Button, Dimensions } from 'react-native';
 import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
+import MyQRScanner from '../components/MyQRScanner';
 import ModalsAppTlaco from '../modals/modalsAppTlaco';
 //import { Trans } from 'react-i18next';
 
@@ -10,22 +11,27 @@ const screenHeight = Dimensions.get('window').height;
 
 const Monumento = props => {
     const [confirmed, setConfirmed] = useState(false);
+    const [modalState, setModalSate] = useState(false);
 
-  const confirm = () => {
+    const confirm = () => {
     
-    setConfirmed(true);
-  };
+        setConfirmed(true);
+    };
 
+    let comercial;
 
-  let comercial;
+    if (confirmed) {
+        comercial = (
+            <ModalsAppTlaco state={true}/>
+        );
+    }
 
-  if (confirmed) {
-    comercial = (
-     <ModalsAppTlaco state={true}/>
-    );
-  }
+    
+
     return (
-        <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}> 
+        <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}>
+
+            <MyQRScanner visible = {modalState}/> 
             
             <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center'}}>
 
@@ -117,7 +123,7 @@ const Monumento = props => {
             </View>
 
             <View style = {styles.contenedorBotones}>
-                <Botones title = "ESCANEAR DE NUEVO"/>
+                <Botones onPress = {() => setModalState(true)} title = "ESCANEAR DE NUEVO"/>
                 <Botones title = "INICIO" />
             </View>
 
