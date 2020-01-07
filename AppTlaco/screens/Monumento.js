@@ -6,6 +6,7 @@ import ModalsAppTlaco from '../modals/modalsAppTlaco';
 //import { Trans } from 'react-i18next';
 
 const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 const Monumento = props => {
     const [confirmed, setConfirmed] = useState(false);
@@ -64,7 +65,7 @@ const Monumento = props => {
             <Titulo titulo = "Iglesia de San Miguel Arcángel"/>
 
             <View style = {styles.contenedorTexto}>
-                <Text style = {styles.estiloSeparador}>Welcome to React</Text>
+                <Text style = {styles.estiloSeparador}>HISTORIA</Text>
             </View>
 
             <View >
@@ -106,15 +107,20 @@ const Monumento = props => {
             </View>
 
             <View style = {styles.contenedorTexto}>
-                <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
+                <Text style = {styles.estiloSeparador}>EVENTOS QUE SE CELEBRAN</Text>
+            </View>
+
+            <View >
+                <Text style = {styles.estiloTexto}>
+                29 de septiembre se celebra
+                </Text>
             </View>
 
             <View style = {styles.contenedorBotones}>
-                <Botones title = "Escanear de nuevo" 
-                 
-                    />
-                <Botones title = "Inicio" />
+                <Botones title = "ESCANEAR DE NUEVO"/>
+                <Botones title = "INICIO" />
             </View>
+
             {comercial}
         </ScrollView>
     );
@@ -123,15 +129,16 @@ const Monumento = props => {
 const styles = StyleSheet.create({
     contenedorBotones: {
         flexDirection: 'row',
-        //width: '100%',
         justifyContent: 'space-around',
-        //marginVertical: '5%',
         alignContent: 'center',
-        paddingTop: 20
+        alignItems: 'center',
+        paddingTop: 20,
+        //paddingEnd: '5%',
+        marginBottom: 20
     },
 
     estiloImagen: {
-        width : screenWidth - 23, 
+        width : screenWidth - 20, 
         height: 250,
         alignSelf: 'center',
         opacity: 0.9,
@@ -156,10 +163,9 @@ const styles = StyleSheet.create({
     },
 
     contenedorComponentes: {
-        width: '90%',
-        height: '100%',
-        margin: '5%',
-        alignContent: 'center'
+        width : screenWidth - 20,
+        alignContent: 'center',
+        alignSelf: 'center'
     }
 });
 

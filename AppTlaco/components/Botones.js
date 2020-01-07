@@ -5,29 +5,28 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const Botones = props => {
     return (
-        <TouchableOpacity activeOpacity={.8}>
-            <View style = {styles.botones}>
-                <Button style = {styles.textoBotones} title= {props.title}></Button>
-            </View>
+        <TouchableOpacity activeOpacity={.8} style = {styles.botones}>
+            <Text style = {styles.textoBotones}>{props.title}</Text>
         </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
     botones: {
-        backgroundColor: "#d73352",
-        paddingVertical: 10,
-        marginVertical: 10,
+        //paddingVertical: 10,
+        //marginVertical: 10,
         paddingHorizontal: '10%',
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 20,
-       // maxWidth: '70%'
+        backgroundColor: 'red',
+        borderRadius: 5,
+        width : 150,
+        height: 45
     },
 
     textoBotones: {
         color: "#FFF",
-        fontSize: 18,
+        fontSize: 15,
         textAlign: 'center'
     },
 });
