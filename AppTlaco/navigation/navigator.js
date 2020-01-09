@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation';
 import MonumentosGridScreen from '../screens/monumentosGridScreen';
 import Login from '../screens/login';
 import Monumento from '../screens/Monumento';
+import MyQRScanner from '../components/MyQRScanner';
 
 const Navigator = createStackNavigator(
     {
