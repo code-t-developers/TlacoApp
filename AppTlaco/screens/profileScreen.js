@@ -6,14 +6,20 @@ import {
   Image,
   TouchableOpacity,
   ImageBackground,
-  Linking
+  Linking,
+  ScrollView,
+  Dimensions
 } from 'react-native';
 const background = require("../images/back.jpg");
+
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+
 const ProfileScreen = props => {
 	
 
     return (
-       <View style={styles.container}>
+       <ScrollView style={styles.container}>
           <View style={styles.header}>
           <Image style={{flex: 1,height:'100%', resizeMode: 'stretch'}} source={background}/>
           </View>
@@ -24,12 +30,12 @@ const ProfileScreen = props => {
               <Text style={styles.info}>Puntaje: 2500</Text>
               
               <Text style={styles.description} onPress={ ()=> Linking.openURL('https://google.com') }>
-                Monumentos y objetos Descubiertos
+                Monumentos y objetos Desbloqueados
               </Text>
               
               
               <Text style={styles.description}>
-                Promociones
+                Monumentos y objetos bloqueados
               </Text>
               
               
@@ -40,11 +46,65 @@ const ProfileScreen = props => {
               
                            
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color:'white'}}>Atras</Text> 
+                <Text style={{color:'white'}}>Escanear código</Text> 
               </TouchableOpacity>
             </View>
+            <View style={styles.promocionesContainer}>
+            <Text style={styles.name}>Promociones</Text>
+             <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center', margin: 20}}>
+
+                <View style = {{paddingEnd : 10, }}>
+                    <Image
+                        style={styles.estiloImagen}
+                        source={require('../images/codet.jpg')}
+                    />
+                    <View style = {styles.containerTextoPromociones}>
+                        <Text style={styles.textoTituloPromociones}>Frappe Gratis</Text>
+                        <Text style={styles.textoPromociones}>K-Fecito</Text>
+                        <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
+                        <TouchableOpacity style={styles.buttonContainer}>
+                          <Text style={{color:'white'}}>Ingresar promoción</Text> 
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style = {{paddingEnd : 10}}>
+                    <Image
+                        style={styles.estiloImagen}
+                        source={require('../images/codet.jpg')}
+                    />
+                    <View style = {styles.containerTextoPromociones}>
+                    <Text style={styles.textoTituloPromociones}>Shots Gratis</Text>
+                        <Text style={styles.textoPromociones}>Frida Mezcaleria</Text>
+                        <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
+                        <TouchableOpacity style={styles.buttonContainer}>
+                          <Text style={{color:'white'}}>Ingresar promoción</Text> 
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                
+
+                <View style = {{paddingEnd : 10}}>
+                    <Image
+                        style={styles.estiloImagen}
+                        source={require('../images/codet.jpg')}
+                    />
+                    <View style = {styles.containerTextoPromociones}>
+                    <Text style={styles.textoTituloPromociones}>5 tacos de pastor Gratis</Text>
+                    <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
+                        <Text style={styles.textoPromociones}>Tacos: el pastorcito</Text>
+                        <TouchableOpacity style={styles.buttonContainer}>
+                          <Text style={{color:'white'}}>Ingresar promoción</Text> 
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                
+            </ScrollView>
+            <Text style = {{marginBottom: 15}}>Made by: Code-T</Text>
+            </View>
+
         </View>
-      </View>
+      </ScrollView>
     );
   
 };
@@ -106,6 +166,40 @@ const styles = StyleSheet.create({
     borderRadius:30,
     backgroundColor: "#d73352",
   },
+  promocionesContainer: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#EAECED',
+    paddingTop: 20
+  },
+   estiloImagen: {
+        width : screenWidth - 30, 
+        height: 250,
+        alignSelf: 'center',
+        opacity: 0.9,
+    },
+    containerTextoPromociones:{
+      borderWidth: 5, 
+      flex: 1, 
+      paddingLeft: 10, 
+      opacity: 0.7,
+      borderColor: 5,
+    },
+    textoTituloPromociones:{
+      fontSize:28,
+      color: "#d73352",
+      fontWeight: "600"
+    },
+    textoPromociones:{
+      fontSize:22,
+      color: "#d73352",
+      fontWeight: "600"
+    },
+    textoDescripcionPromociones:{
+    fontSize:18,
+     color: '#E91E63',
+    textDecorationLine: 'underline'
+    }
 });
 
 export default ProfileScreen;
