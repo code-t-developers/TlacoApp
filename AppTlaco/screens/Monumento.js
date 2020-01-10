@@ -27,12 +27,16 @@ const Monumento = props => {
         );
     }
 
-    
+    const callQRScanner = () => {
+        setModalState(true);
+    }
+
+    const cancelScan = () => {setModalState(false);}
 
     return (
         <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}>
 
-            <MyQRScanner visible = {modalState}/> 
+            <MyQRScanner visible = {modalState} onCancel = {cancelScan}/>
             
             <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center'}}>
 
@@ -140,7 +144,7 @@ const Monumento = props => {
             </View>
 
             <View style = {styles.contenedorBotones}>
-                <Botones openModal = {() => setModalState(true)} title = "ESCANEAR DE NUEVO"/>
+                <Botones doThis = {callQRScanner} title = "ESCANEAR DE NUEVO"/>
                 <Botones title = "INICIO" />
             </View>
 
@@ -156,7 +160,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
         paddingTop: 20,
-        //paddingEnd: '5%',
         marginBottom: 20
     },
 
