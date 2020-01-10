@@ -10,7 +10,6 @@ const screenHeight = Dimensions.get('window').height;
 const MyQRScanner = props => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    const [type, setType] = useState(BarCodeScanner.Constants.Type.back);
 
     useEffect(() => {
         (async () => {
@@ -33,7 +32,7 @@ const MyQRScanner = props => {
     
     return (
         <Modal visible = {props.visible} animationType = "slide">
-            <View style = {{alignItems: 'center', marginTop: 10, backgroundColor: 'orange'}}>
+            <View style = {styles.textContainer}>
                 <Text 
                     style = {{fontSize: 16, fontWeight: 'bold'}}
                 >
@@ -41,11 +40,10 @@ const MyQRScanner = props => {
                 </Text>
                 <Text>Y CONOCE MÁS SOBRE ÉL</Text>
             </View>
-            <View style = {{marginTop: 20, borderRadius: 8}}>
+            <View style = {styles.viewScanner}>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                    style={StyleSheet.absoluteFillObject}
-                    type = {type}
+                    style={StyleSheet.absoluteFill}
                 />
                 <Text style = {styles.scannerContainer}></Text>
             </View>
@@ -58,10 +56,29 @@ const MyQRScanner = props => {
 }
 
 const styles = StyleSheet.create({
-    scannerContainer : {
-        width : '80%',
-        height : '80%',
+    textContainer : {
+        alignItems: 'center', 
+        marginTop: 10, 
+        backgroundColor: 'orange',
+        width: '95%',
+        alignSelf: 'center',
         borderRadius: 8
+    },
+
+    viewScanner : {
+        marginTop: 20, 
+        borderWidth: 5.25, 
+        width: '88.194%', 
+        height: '77.601%', 
+        alignSelf: 'center', 
+        borderRadius: 8
+    },
+
+    scannerContainer : {
+        width : '90%',
+        height : '80%',
+        maxWidth : '90%',
+        alignSelf: 'center',
     },
 
     buttonContainer : {
