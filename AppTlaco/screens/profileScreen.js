@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,16 +10,28 @@ import {
   ScrollView,
   Dimensions
 } from 'react-native';
+import MyQRScanner from '../components/MyQRScanner';
+import Botones from '../components/Botones';
+
 const background = require("../images/back.jpg");
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
+
+
+
 const ProfileScreen = props => {
-	
+
+  const [modalState, setModalState] = useState(false);
+  
+  const callQRScanner = () => {
+    setModalState(true);
+  }
 
     return (
        <ScrollView style={styles.container}>
+         <MyQRScanner visible = {modalState} onCancel = { () => setModalState(false)}/>
           <View style={styles.header}>
           <Image style={{flex: 1,height:'100%', resizeMode: 'stretch'}} source={background}/>
           </View>
@@ -28,26 +40,25 @@ const ProfileScreen = props => {
             <View style={styles.bodyContent}>
               <Text style={styles.name}>Silvio Hermida</Text>
               <Text style={styles.info}>Puntaje: 2500</Text>
-              
-              <Text style={styles.description} onPress={ ()=> Linking.openURL('https://google.com') }>
-                Monumentos y objetos Desbloqueados
-              </Text>
-              
-              
-              <Text style={styles.description}>
-                Monumentos y objetos bloqueados
-              </Text>
-              
-              
-              <Text style={styles.description}>
-                Mapa
-              </Text>
+
+              <Botones customFontSize = {11} title = "MONUMENTOS Y OBJETOS DESBLOQUEADOS" doThis = {() => {
+                props.navigation.navigate({
+                routeName: 'MonumentosDesbloqueados'});
+              }}/>
+
+              <Botones style = {{marginTop: 10}} customFontSize = {11.8} title = "MONUMENTOS Y OBJETOS BLOQUEADOS" doThis = {() => {
+                props.navigation.navigate({
+                routeName: 'MonumentosBloqueados'});
+              }}/>
               
               
-                           
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color:'white'}}>Escanear código</Text> 
-              </TouchableOpacity>
+              <Botones style = {{marginTop: 10}} title = "MAPA" doThis = {() => {
+                props.navigation.navigate({
+                routeName: 'Mapa'});
+              }}/>
+
+              <Botones style = {{marginTop: 10}} doThis = {callQRScanner} title = "ESCANEAR CÓDIGO"/>
+
             </View>
             <View style={styles.promocionesContainer}>
             <Text style={styles.name}>Promociones</Text>
@@ -56,7 +67,7 @@ const ProfileScreen = props => {
                 <View style = {{paddingEnd : 10, }}>
                     <Image
                         style={styles.estiloImagen}
-                        source={require('../images/codet.jpg')}
+                        source={require('../images/fridaMezcaleria.jpg')}
                     />
                     <View style = {styles.containerTextoPromociones}>
                         <Text style={styles.textoTituloPromociones}>Frappe Gratis</Text>
@@ -71,7 +82,7 @@ const ProfileScreen = props => {
                 <View style = {{paddingEnd : 10}}>
                     <Image
                         style={styles.estiloImagen}
-                        source={require('../images/codet.jpg')}
+                        source={require('../images/fridaMezcaleria.jpg')}
                     />
                     <View style = {styles.containerTextoPromociones}>
                     <Text style={styles.textoTituloPromociones}>Shots Gratis</Text>
@@ -87,7 +98,7 @@ const ProfileScreen = props => {
                 <View style = {{paddingEnd : 10}}>
                     <Image
                         style={styles.estiloImagen}
-                        source={require('../images/codet.jpg')}
+                        source={require('../images/fridaMezcaleria.jpg')}
                     />
                     <View style = {styles.containerTextoPromociones}>
                     <Text style={styles.textoTituloPromociones}>5 tacos de pastor Gratis</Text>

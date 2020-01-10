@@ -59,7 +59,7 @@ const Login = props =>{
     <TouchableOpacity activeOpacity={.5} 
     onPress = {() => {
       props.navigation.navigate({
-        routeName: 'Monumentos'
+        routeName: 'Perfil'
       });
     }}>
     <View style={styles.button}>

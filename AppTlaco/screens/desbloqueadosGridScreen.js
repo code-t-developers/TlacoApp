@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import {CATEGORIES} from '../data/datos';
-import Colors from '../constants/Colors';
 import MonumentosGridTitle from '../components/MonumentosGridTitle';
 
 
@@ -20,6 +19,13 @@ const DesbloqueadosGridScreen = props =>{
 		<MonumentosGridTitle 
 		title={itemData.item.title} 
 		color={itemData.item.color}
+		onSelect={() =>{
+			props.navigation.navigate(
+				{
+					routeName: 'Monumento',
+				}
+			);
+		}}
 		/>
 		);
 }

@@ -5,8 +5,8 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const Botones = props => {
     return (
-        <TouchableOpacity activeOpacity={.8} style = {styles.botones} onPress = {props.doThis}>
-            <Text style = {styles.textoBotones}>{props.title}</Text>
+        <TouchableOpacity activeOpacity={.8} style = {{...styles.botones, ...props.style}} onPress = {props.doThis}>
+            <Text style = {{...styles.textoBotones, ...{fontSize : props.customFontSize}}}>{props.title}</Text>
         </TouchableOpacity>
     );
 };

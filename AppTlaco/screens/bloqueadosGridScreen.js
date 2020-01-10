@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import {CATEGORIES} from '../data/datos';
-import Colors from '../constants/Colors';
 import BloqueadoGridTitle from '../components/bloqueadoGridTitle';
 
 

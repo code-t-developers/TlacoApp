@@ -11,7 +11,6 @@ import {
 
 import {CATEGORIES} from '../data/datos';
 import MonumentosGridTitle from '../components/MonumentosGridTitle';
-import Monumento from '../screens/Monumento';
 
 
 const MonumentosGridScreen = props =>{
