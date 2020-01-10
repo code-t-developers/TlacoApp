@@ -4,6 +4,7 @@ import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
 import MyQRScanner from '../components/MyQRScanner';
 import ModalsAppTlaco from '../modals/modalsAppTlaco';
+import { Video } from 'expo-av';
 //import { Trans } from 'react-i18next';
 
 const screenWidth = Dimensions.get('window').width;
@@ -11,7 +12,7 @@ const screenHeight = Dimensions.get('window').height;
 
 const Monumento = props => {
     const [confirmed, setConfirmed] = useState(false);
-    const [modalState, setModalSate] = useState(false);
+    const [modalState, setModalState] = useState(false);
 
     const confirm = () => {
     
@@ -26,12 +27,16 @@ const Monumento = props => {
         );
     }
 
-    
+    const callQRScanner = () => {
+        setModalState(true);
+    }
+
+    const cancelScan = () => {setModalState(false);}
 
     return (
         <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}>
 
-            <MyQRScanner visible = {modalState}/> 
+            <MyQRScanner visible = {modalState} onCancel = {cancelScan}/>
             
             <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center'}}>
 
@@ -122,8 +127,24 @@ const Monumento = props => {
                 </Text>
             </View>
 
+            <View style = {styles.contenedorTexto}>
+                <Text style = {styles.estiloSeparador}>MULTIMEDIA</Text>
+            </View>
+
+            <View style = {styles.contenedorVideo}>
+                <Video
+                    source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+                    rate={1.0}
+                    volume={1.0}
+                    isMuted={false}
+                    resizeMode="cover"
+                    useNativeControls
+                    style={{ width: 300, height: 300, borderRadius: 8, borderWidth: 0.5 }}
+                />
+            </View>
+
             <View style = {styles.contenedorBotones}>
-                <Botones onPress = {() => setModalState(true)} title = "ESCANEAR DE NUEVO"/>
+                <Botones doThis = {callQRScanner} title = "ESCANEAR DE NUEVO"/>
                 <Botones title = "INICIO" />
             </View>
 
@@ -139,7 +160,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
         paddingTop: 20,
-        //paddingEnd: '5%',
         marginBottom: 20
     },
 
@@ -172,6 +192,12 @@ const styles = StyleSheet.create({
         width : screenWidth - 20,
         alignContent: 'center',
         alignSelf: 'center'
+    },
+
+    contenedorVideo: {
+        alignContent: 'center',
+        alignSelf: 'center',
+        marginTop: 10
     }
 });
 
