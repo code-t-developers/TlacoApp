@@ -29,94 +29,102 @@ const ProfileScreen = props => {
     setModalState(true);
   }
 
-    return (
-       <ScrollView style={styles.container}>
-         <MyQRScanner visible = {modalState} onCancel = { () => setModalState(false)}/>
-          <View style={styles.header}>
-          <Image style={{flex: 1,height:'100%', resizeMode: 'stretch'}} source={background}/>
-          </View>
-          <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
-          <View style={styles.body}>
-            <View style={styles.bodyContent}>
-              <Text style={styles.name}>Silvio Hermida</Text>
-              <Text style={styles.info}>Puntaje: 2500</Text>
+  return (
+    <ScrollView style={styles.container}>
+      <MyQRScanner visible = {modalState} onCancel = { () => setModalState(false)}/>
 
-              <Botones customFontSize = {11} title = "MONUMENTOS Y OBJETOS DESBLOQUEADOS" doThis = {() => {
-                props.navigation.navigate({
-                routeName: 'MonumentosDesbloqueados'});
-              }}/>
+      <View style={styles.header}>
+        <Image style={{flex: 1,height:'100%', resizeMode: 'stretch'}} source={background}/>
+      </View>
 
-              <Botones style = {{marginTop: 10}} customFontSize = {11.8} title = "MONUMENTOS Y OBJETOS BLOQUEADOS" doThis = {() => {
-                props.navigation.navigate({
-                routeName: 'MonumentosBloqueados'});
-              }}/>
+      <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+
+      <View style={styles.body}>
+        <View style={styles.bodyContent}>
+          <Text style={styles.name}>Silvio Hermida</Text>
+          <Text style={styles.info}>Puntaje: 2500</Text>
+
+          <Botones customFontSize = {13} title = "MONUMENTOS Y OBJETOS" myIcon = "md-unlock" 
+            doThis = {() => {
+              props.navigation.navigate({routeName: 'MonumentosDesbloqueados'});
+            }}
+          />
+
+          <Botones style = {{marginTop: 10}} customFontSize = {13} title = "MONUMENTOS Y OBJETOS" myIcon = "md-lock" 
+            doThis = {() => {
+              props.navigation.navigate({routeName: 'MonumentosBloqueados'});
+            }}
+          />
               
               
-              <Botones style = {{marginTop: 10}} title = "MAPA" doThis = {() => {
-                props.navigation.navigate({
-                routeName: 'Mapa'});
-              }}/>
+          <Botones style = {{marginTop: 10}} title = "MAPA" myIcon = "md-pin" 
+            doThis = {() => {
+              props.navigation.navigate({routeName: 'Mapa'});
+            }}
+          />
 
-              <Botones style = {{marginTop: 10}} doThis = {callQRScanner} title = "ESCANEAR CÓDIGO"/>
-
-            </View>
-            <View style={styles.promocionesContainer}>
-            <Text style={styles.name}>Promociones</Text>
-             <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center', margin: 20}}>
-
-                <View style = {{paddingEnd : 10, }}>
-                    <Image
-                        style={styles.estiloImagen}
-                        source={require('../images/fridaMezcaleria.jpg')}
-                    />
-                    <View style = {styles.containerTextoPromociones}>
-                        <Text style={styles.textoTituloPromociones}>Frappe Gratis</Text>
-                        <Text style={styles.textoPromociones}>K-Fecito</Text>
-                        <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
-                        <TouchableOpacity style={styles.buttonContainer}>
-                          <Text style={{color:'white'}}>Ingresar promoción</Text> 
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <View style = {{paddingEnd : 10}}>
-                    <Image
-                        style={styles.estiloImagen}
-                        source={require('../images/fridaMezcaleria.jpg')}
-                    />
-                    <View style = {styles.containerTextoPromociones}>
-                    <Text style={styles.textoTituloPromociones}>Shots Gratis</Text>
-                        <Text style={styles.textoPromociones}>Frida Mezcaleria</Text>
-                        <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
-                        <TouchableOpacity style={styles.buttonContainer}>
-                          <Text style={{color:'white'}}>Ingresar promoción</Text> 
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                
-
-                <View style = {{paddingEnd : 10}}>
-                    <Image
-                        style={styles.estiloImagen}
-                        source={require('../images/fridaMezcaleria.jpg')}
-                    />
-                    <View style = {styles.containerTextoPromociones}>
-                    <Text style={styles.textoTituloPromociones}>5 tacos de pastor Gratis</Text>
-                    <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
-                        <Text style={styles.textoPromociones}>Tacos: el pastorcito</Text>
-                        <TouchableOpacity style={styles.buttonContainer}>
-                          <Text style={{color:'white'}}>Ingresar promoción</Text> 
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                
-            </ScrollView>
-            <Text style = {{marginBottom: 15}}>Made by: Code-T</Text>
-            </View>
+          <Botones style = {{marginTop: 10}} doThis = {callQRScanner} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
 
         </View>
-      </ScrollView>
-    );
+
+        <View style={styles.promocionesContainer}>
+          <Text style={styles.name}>Promociones</Text>
+             
+          <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center', margin: 20}}>
+            <View style = {{paddingEnd : 10, }}>
+              <Image
+                style={styles.estiloImagen}
+                source={require('../images/fridaMezcaleria.jpg')}
+              />
+
+              <View style = {styles.containerTextoPromociones}>
+                <Text style={styles.textoTituloPromociones}>Frappe Gratis</Text>
+                <Text style={styles.textoPromociones}>K-Fecito</Text>
+                <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
+                <TouchableOpacity style={styles.buttonContainer}>
+                  <Text style={{color:'white'}}>Ingresar promoción</Text> 
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View style = {{paddingEnd : 10}}>
+              <Image
+                style={styles.estiloImagen}
+                source={require('../images/fridaMezcaleria.jpg')}
+              />
+              <View style = {styles.containerTextoPromociones}>
+                <Text style={styles.textoTituloPromociones}>Shots Gratis</Text>
+                <Text style={styles.textoPromociones}>Frida Mezcaleria</Text>
+                <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
+                <TouchableOpacity style={styles.buttonContainer}>
+                  <Text style={{color:'white'}}>Ingresar promoción</Text> 
+                </TouchableOpacity>
+              </View>
+            </View>
+                
+            <View style = {{paddingEnd : 10}}>
+              <Image
+                style={styles.estiloImagen}
+                source={require('../images/fridaMezcaleria.jpg')}
+              />
+              <View style = {styles.containerTextoPromociones}>
+                <Text style={styles.textoTituloPromociones}>5 tacos de pastor Gratis</Text>
+                <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
+                <Text style={styles.textoPromociones}>Tacos: el pastorcito</Text>
+                <TouchableOpacity style={styles.buttonContainer}>
+                  <Text style={{color:'white'}}>Ingresar promoción</Text> 
+                </TouchableOpacity>
+              </View>
+            </View>
+                
+          </ScrollView>
+          
+          <Text style = {{marginBottom: 15}}>Made by: Code-T</Text>
+        </View>
+
+      </View>
+    </ScrollView>
+  );
   
 };
 

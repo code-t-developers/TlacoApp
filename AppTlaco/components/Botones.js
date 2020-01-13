@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { Ionicons } from '@expo/vector-icons';
 
 
 const Botones = props => {
     return (
         <TouchableOpacity activeOpacity={.8} style = {{...styles.botones, ...props.style}} onPress = {props.doThis}>
+            <Ionicons name = {props.myIcon} size = {27} color = "white" style = {{margin: 5}}/>
             <Text style = {{...styles.textoBotones, ...{fontSize : props.customFontSize}}}>{props.title}</Text>
         </TouchableOpacity>
     );
@@ -13,20 +15,19 @@ const Botones = props => {
 
 const styles = StyleSheet.create({
     botones: {
-        //paddingVertical: 10,
-        //marginVertical: 10,
-        paddingHorizontal: '10%',
+        paddingHorizontal: '9%',
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: 'red',
         borderRadius: 5,
         width : 150,
-        height: 45
+        height: 45,
+        flexDirection: 'row'
     },
 
     textoBotones: {
         color: "#FFF",
-        fontSize: 15,
+        //fontSize: 15,
         textAlign: 'center'
     },
 });

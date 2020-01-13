@@ -145,8 +145,8 @@ const Monumento = props => {
             </View>
     
             <View style = {styles.contenedorBotones}>
-                <Botones doThis = {callQRScanner} title = "ESCANEAR DE NUEVO"/>
-                <Botones title = "INICIO" />
+                <Botones doThis = {callQRScanner} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
+                <Botones title = "INICIO" myIcon = "md-home"/>
             </View>
     
             {comercial}

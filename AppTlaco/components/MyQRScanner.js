@@ -49,7 +49,7 @@ const MyQRScanner = props => {
             </View>
 
             <View style = {styles.buttonContainer}>
-                <Botones title = "CANCELAR" doThis = {props.onCancel}/>
+                <Botones title = "CANCELAR" doThis = {props.onCancel} myIcon = "md-close"/>
             </View>
         </Modal>
     );
