@@ -71,7 +71,7 @@ const ProfileScreen = props => {
           <Text style={styles.name}>Promociones</Text>
              
           <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center', margin: 20}}>
-            <View style = {{paddingEnd : 10, }}>
+            <View style = {{paddingEnd : 10, width: '20.5%'}}>
               <Image
                 style={styles.estiloImagen}
                 source={require('../images/fridaMezcaleria.jpg')}
@@ -80,10 +80,17 @@ const ProfileScreen = props => {
               <View style = {styles.containerTextoPromociones}>
                 <Text style={styles.textoTituloPromociones}>Frappe Gratis</Text>
                 <Text style={styles.textoPromociones}>K-Fecito</Text>
-                <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
+                <View style = {{width: '90%'}}>
+                <Text style={styles.textoDescripcionPromociones}>
+                  ¡Gana 5 tacos de pastor! Sólo contesta la trivia y escanea el cógido QR que se encuentra en el establecimiento
+                </Text>
+                </View>
+                {/** 
                 <TouchableOpacity style={styles.buttonContainer}>
                   <Text style={{color:'white'}}>Ingresar promoción</Text> 
                 </TouchableOpacity>
+                */}
+                <Botones style = {{marginTop: 15}} title = "INGRESAR PROMOCIÓN" myIcon = "md-add"/>
               </View>
             </View>
 
@@ -95,7 +102,9 @@ const ProfileScreen = props => {
               <View style = {styles.containerTextoPromociones}>
                 <Text style={styles.textoTituloPromociones}>Shots Gratis</Text>
                 <Text style={styles.textoPromociones}>Frida Mezcaleria</Text>
-                <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
+                <Text style={styles.textoDescripcionPromociones}>
+                  ¡Ganate 5 tacos de pastor! {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento
+                </Text>
                 <TouchableOpacity style={styles.buttonContainer}>
                   <Text style={{color:'white'}}>Ingresar promoción</Text> 
                 </TouchableOpacity>
@@ -192,7 +201,7 @@ const styles = StyleSheet.create({
     paddingTop: 20
   },
    estiloImagen: {
-        width : screenWidth - 30, 
+        width : screenWidth - 50, 
         height: 250,
         alignSelf: 'center',
         opacity: 0.9,
@@ -203,6 +212,7 @@ const styles = StyleSheet.create({
       paddingLeft: 10, 
       opacity: 0.7,
       borderColor: 5,
+      alignItems: 'center',
     },
     textoTituloPromociones:{
       fontSize:28,
@@ -215,9 +225,10 @@ const styles = StyleSheet.create({
       fontWeight: "600"
     },
     textoDescripcionPromociones:{
-    fontSize:18,
-     color: '#E91E63',
-    textDecorationLine: 'underline'
+      fontSize:18,
+      color: '#E91E63',
+      textDecorationLine: 'underline',
+      textAlign: 'center'
     }
 });
 
