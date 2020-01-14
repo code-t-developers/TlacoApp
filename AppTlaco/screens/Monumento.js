@@ -146,7 +146,10 @@ const Monumento = props => {
     
             <View style = {styles.contenedorBotones}>
                 <Botones doThis = {callQRScanner} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
-                <Botones title = "INICIO" myIcon = "md-home"/>
+                <Botones title = "INICIO" myIcon = "md-home" doThis = {() => {
+                    props.navigation.navigate({routeName: 'Perfil'});
+                }}
+                />
             </View>
     
             {comercial}
