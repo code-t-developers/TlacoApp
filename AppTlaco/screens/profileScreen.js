@@ -18,9 +18,6 @@ const background = require("../images/back.jpg");
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-
-
-
 const ProfileScreen = props => {
 
   const [modalState, setModalState] = useState(false);
@@ -37,11 +34,11 @@ const ProfileScreen = props => {
         <Image style={{flex: 1,height:'100%', resizeMode: 'stretch'}} source={background}/>
       </View>
 
-      <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+      <Image style={styles.avatar} source={{uri: state.photoUrl}}/>
 
       <View style={styles.body}>
         <View style={styles.bodyContent}>
-          <Text style={styles.name}>Silvio Hermida</Text>
+  <Text style={styles.name}>{state.name}</Text>
           <Text style={styles.info}>Puntaje: 2500</Text>
 
           <Botones customFontSize = {13} title = "MONUMENTOS Y OBJETOS" myIcon = "md-unlock" 

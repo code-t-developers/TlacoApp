@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Google from 'expo-google-app-auth'
 import {
   AppRegistry,
   StyleSheet,
@@ -14,6 +15,33 @@ const lockIcon = require("../images/lock.png");
 const personIcon = require("../images/person.png");
 
 const Login = props =>{
+  state={signedIn: false,
+    name: "",
+    photoUrl: "",
+  }
+    const signIn = async () => {
+      try {
+        const result = await Google.logInAsync({
+          androidClientId:
+            "551422502591-oilem9p1igp26og11l61en8129f0l1o4.apps.googleusercontent.com",
+          //iosClientId: YOUR_CLIENT_ID_HERE,  <-- if you use iOS
+          scopes: ["profile", "email"]
+        })
+  
+        if (result.type === "success") {
+            state.signedIn= true;
+            state.name=result.user.name;
+            state.photoUrl= result.user.photoUrl;
+          
+          console.log("Sesión iniciada", state.name)
+          props.navigation.navigate({routeName: 'Perfil', otherParam: state.name, otherParam: state.photoUrl});
+        } else {
+          console.log("cancelled")
+        }
+      } catch (e) {
+        console.log("error", e)
+      }
+    }
   return (
     <ImageBackground
     style={[styles.background, styles.container]} 
@@ -77,7 +105,8 @@ const Login = props =>{
     <Text style={styles.loginButtonBelowText1}>OR</Text>
     <View style={styles.hairline} />
 
-     <TouchableOpacity activeOpacity={.5}>
+     <TouchableOpacity activeOpacity={.5} 
+     onPress={signIn}>
     <View style={styles.button}>
     <Text style={styles.buttonText}>Ingresar Con Google</Text>
     </View>
@@ -157,7 +186,6 @@ const Login = props =>{
     },
 
     loginButtonBelowText1: {
-      //fontFamily: 'AvenirNext-Bold',
       fontSize: 14,
       paddingHorizontal: 5,
       alignSelf: 'center',
