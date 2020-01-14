@@ -31,7 +31,7 @@ export default class App extends React.Component {
     this.state = {
       signedIn: false,
       name: "",
-      photoUrl: ""
+      //photoUrl: ""
     }
   }
   signIn = async () => {
@@ -47,7 +47,7 @@ export default class App extends React.Component {
         this.setState({
           signedIn: true,
           name: result.user.name,
-          photoUrl: result.user.photoUrl
+          //photoUrl: result.user.photoUrl
         })
       } else {
         console.log("cancelled")
@@ -60,7 +60,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {this.state.signedIn ? (
-          <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl} />
+          <LoggedInPage name={this.state.name} /*photoUrl={this.state.photoUrl} *//>
         ) : (
           <LoginPage signIn={this.signIn} />
         )}
@@ -82,7 +82,7 @@ const LoggedInPage = props => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Welcome:{props.name}</Text>
-      <Image style={styles.image} source={{ uri: props.photoUrl }} />
+     {/**  <Image style={styles.image} source={{ uri: props.photoUrl }} />*/}
     </View>
   )
 }
