@@ -6,10 +6,32 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
+// scanLine = 90;
 
 const MyQRScanner = props => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
+    const [scanLine, setScanLine] = useState(0);
+
+    const moveScanLine = () => {
+        let aux = 90;
+       // setScanLine(90);
+
+       /*
+        while (!scanned){
+            setScanLine(aux);
+            aux += 10;
+
+            if(aux > 451 )
+                aux = 90;
+            
+            console.log("scanLine, aux");
+        }
+
+        console.log("hola");
+        */
+        
+    }
 
     useEffect(() => {
         (async () => {
@@ -31,7 +53,7 @@ const MyQRScanner = props => {
     }
     
     return (
-        <Modal visible = {props.visible} animationType = "slide">
+        <Modal visible = {props.visible} animationType = "slide" onShow = {moveScanLine}>
             <View style = {styles.textContainer}>
                 <Text 
                     style = {{fontSize: 16, fontWeight: 'bold'}}
@@ -45,7 +67,17 @@ const MyQRScanner = props => {
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     style={StyleSheet.absoluteFill}
                 />
+                <View
+                    
+                    style = {{
+                        height: 1,
+                        width: '100%',
+                        backgroundColor: 'red',
+                        marginTop: scanLine
+                    }}
+                />
                 <Text style = {styles.scannerContainer}></Text>
+                
             </View>
 
             <View style = {styles.buttonContainer}>
