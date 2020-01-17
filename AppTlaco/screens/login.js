@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as Google from 'expo-google-app-auth';
 import * as Facebook from 'expo-facebook';
+import { Ionicons } from '@expo/vector-icons';
+import * as Font from 'expo-font';
 import {
   AppRegistry,
   StyleSheet,
@@ -17,6 +19,13 @@ const lockIcon = require("../images/lock.png");
 const personIcon = require("../images/person.png");
 
 const Login = props =>{
+ // componentDidMount () {
+    Font.loadAsync({
+      'A.Casual.Handwritten.Pen.Noncommercial': require('../assets/fonts/A.Casual.Handwritten.Pen.Noncommercial.ttf'),
+      'obcecada-sans-ffp': require('../assets/fonts/obcecada-sans-ffp.ttf'),
+    });
+ // }
+
   state={
     signedIn: false,
     name: "",
@@ -37,8 +46,6 @@ const Login = props =>{
           state.photoUrl= result.user.photoUrl;
           
           props.navigation.navigate({routeName: 'Perfil', otherParam: state.name, otherParam: state.photoUrl});
-      } else {
-          console.log("cancelled")
       }
     } catch (e) {
         console.log("error", e)
@@ -91,67 +98,30 @@ const Login = props =>{
     <View style={styles.titleLocate}>
         <Text style={styles.title}>Bienvenido a TlacoApp</Text>
     </View>
-    <View style={styles.inputWrap}>
-    <View style={styles.iconWrap}>
-
-    <ImageBackground
-    source={personIcon}
-    style={styles.icon}
-    resizeMode="contain"
-    />
-    </View>
-    <TextInput
-    placeholder="Correo"
-    style={styles.input}
-    underlineColorAndroid="transparent"
-    />
-    </View>
-    <View style={styles.inputWrap}>
-    <View style={styles.iconWrap}>
-    <ImageBackground
-    source={lockIcon}
-    style={styles.icon}
-    resizeMode="contain"
-    />
-    </View>
-    <TextInput
-    placeholder="Contraseña"
-    secureTextEntry
-    style={styles.input}
-    underlineColorAndroid="transparent"
-    />
-    </View>
-    <TouchableOpacity activeOpacity={.5} 
-    onPress = {() => {
-      props.navigation.navigate({
-        routeName: 'Perfil'
-      });
-    }}>
-    <View style={styles.button}>
-    <Text style={styles.buttonText}>Ingresar</Text>
-    </View>
-    </TouchableOpacity>
-    <TouchableOpacity activeOpacity={.5}>
+    
+     
     <View>
-    <Text style={styles.forgotPasswordText}>Olvido Contraseña?</Text>
+    <Text style={styles.forgotPasswordText}>INGRESA CON</Text>
     </View>
-    </TouchableOpacity>
     </View>
+    
+    
+    
     <View style={styles.section}>
-    <View style={styles.hairline} />
-    <Text style={styles.loginButtonBelowText1}>OR</Text>
-    <View style={styles.hairline} />
 
      <TouchableOpacity activeOpacity={.5} 
      onPress={signIn}>
     <View style={styles.button}>
-    <Text style={styles.buttonText}>Ingresar Con Google</Text>
+    <Ionicons name = "logo-google" size = {27} color= "white" style = {{paddingHorizontal: 10}}/>
+    <Text style={styles.buttonText}>Google</Text>
     </View>
     </TouchableOpacity>
 
+    <Text style={styles.forgotPasswordText}>O INGRESA CON</Text>
     <TouchableOpacity activeOpacity={.5} onPress = {LoginFB} >
     <View style={styles.button}>
-    <Text style={styles.buttonText}>Ingresar Con Facebook</Text>
+      <Ionicons name = "logo-facebook" size = {27} color= "white" style = {{paddingHorizontal: 10}}/>
+    <Text style={styles.buttonText}>Facebook</Text>
     </View>
 
     </TouchableOpacity>
@@ -205,7 +175,8 @@ const Login = props =>{
       paddingVertical: 10,
       marginVertical: 10,
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
+      flexDirection: 'row'
     },
     buttonText: {
       color: "#FFF",
@@ -214,7 +185,9 @@ const Login = props =>{
     forgotPasswordText: {
       color: "white",
       backgroundColor: "transparent",
-      textAlign: "center"
+      textAlign: "center",
+      fontFamily: 'obcecada-sans-ffp',
+      fontSize: 30
     },
     hairline: {
       backgroundColor: '#CC0000',
@@ -232,9 +205,10 @@ const Login = props =>{
       paddingHorizontal:15
     },
     back: {
-      marginTop: "25%",
+      marginTop: "43%",
       backgroundColor: "#3A5E5E",
-      opacity: .7
+      opacity: .7,
+      paddingBottom: 30
     },
     title:{
       fontSize: 25,

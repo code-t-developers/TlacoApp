@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const Botones = props => {
     return (
-        <TouchableOpacity activeOpacity={.8} style = {{...styles.botones, ...props.style}} onPress = {props.doThis}>
+        <TouchableOpacity activeOpacity={.5} style = {{...styles.botones, ...props.style}} onPress = {props.doThis}>
             <Ionicons name = {props.myIcon} size = {27} color = "white" style = {{margin: 5}}/>
             <Text style = {{...styles.textoBotones, ...{fontSize : props.customFontSize}}}>{props.title}</Text>
         </TouchableOpacity>
