@@ -21,8 +21,8 @@ const personIcon = require("../images/person.png");
 const Login = props =>{
  // componentDidMount () {
     Font.loadAsync({
-      'A.Casual.Handwritten.Pen.Noncommercial': require('../assets/fonts/A.Casual.Handwritten.Pen.Noncommercial.ttf'),
-      'obcecada-sans-ffp': require('../assets/fonts/obcecada-sans-ffp.ttf'),
+      'GOTHICB': require('../assets/fonts/GOTHICB.ttf'),
+      'GOTHIC': require('../assets/fonts/GOTHIC.ttf'),
     });
  // }
 
@@ -100,7 +100,7 @@ const Login = props =>{
     </View>
     
      
-    <View>
+    <View style = {{marginTop: 10}}>
     <Text style={styles.forgotPasswordText}>INGRESA CON</Text>
     </View>
     </View>
@@ -117,7 +117,7 @@ const Login = props =>{
     </View>
     </TouchableOpacity>
 
-    <Text style={styles.forgotPasswordText}>O INGRESA CON</Text>
+    <Text style={styles.forgotPasswordText}>o</Text>
     <TouchableOpacity activeOpacity={.5} onPress = {LoginFB} >
     <View style={styles.button}>
       <Ionicons name = "logo-facebook" size = {27} color= "white" style = {{paddingHorizontal: 10}}/>
@@ -186,8 +186,8 @@ const Login = props =>{
       color: "white",
       backgroundColor: "transparent",
       textAlign: "center",
-      fontFamily: 'obcecada-sans-ffp',
-      fontSize: 30
+      fontFamily: 'GOTHIC',
+      fontSize: 18
     },
     hairline: {
       backgroundColor: '#CC0000',
@@ -205,19 +205,19 @@ const Login = props =>{
       paddingHorizontal:15
     },
     back: {
-      marginTop: "43%",
+      marginTop: "60%",
       backgroundColor: "#3A5E5E",
       opacity: .7,
-      paddingBottom: 30
+      paddingBottom: 30,
     },
     title:{
       fontSize: 25,
-      color:"white"
+      color:"white",
+      fontFamily: 'GOTHICB',
     },
     titleLocate:{
       justifyContent: 'center',
       alignItems: 'center',
-
     }
 
   });

@@ -14,6 +14,9 @@ const Navigator = createStackNavigator(
     {
         Login: {
             screen: Login,
+            navigationOptions : {
+                headerShown : false,
+            }
         },
 
         Monumentos: {
@@ -46,6 +49,9 @@ const Navigator = createStackNavigator(
 
         Perfil: {
             screen: profileScreen,
+            navigationOptions : {
+                headerTitle : 'Inicio',
+            }
         }
     }
 );
