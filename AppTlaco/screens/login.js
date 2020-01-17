@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import * as Google from 'expo-google-app-auth';
 import * as Facebook from 'expo-facebook';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,12 +19,7 @@ const lockIcon = require("../images/lock.png");
 const personIcon = require("../images/person.png");
 
 const Login = props =>{
- // componentDidMount () {
-    Font.loadAsync({
-      'GOTHICB': require('../assets/fonts/GOTHICB.ttf'),
-      'GOTHIC': require('../assets/fonts/GOTHIC.ttf'),
-    });
- // }
+  
 
   state={
     signedIn: false,
@@ -101,7 +96,7 @@ const Login = props =>{
     
      
     <View style = {{marginTop: 10}}>
-    <Text style={styles.forgotPasswordText}>INGRESA CON</Text>
+      <Text style={styles.forgotPasswordText}>INGRESA CON</Text>
     </View>
     </View>
     
@@ -114,6 +109,7 @@ const Login = props =>{
     <View style={styles.button}>
     <Ionicons name = "logo-google" size = {27} color= "white" style = {{paddingHorizontal: 10}}/>
     <Text style={styles.buttonText}>Google</Text>
+    
     </View>
     </TouchableOpacity>
 
@@ -121,7 +117,8 @@ const Login = props =>{
     <TouchableOpacity activeOpacity={.5} onPress = {LoginFB} >
     <View style={styles.button}>
       <Ionicons name = "logo-facebook" size = {27} color= "white" style = {{paddingHorizontal: 10}}/>
-    <Text style={styles.buttonText}>Facebook</Text>
+      <Text style={styles.buttonText}>Facebook</Text>
+    
     </View>
 
     </TouchableOpacity>
@@ -176,11 +173,13 @@ const Login = props =>{
       marginVertical: 10,
       alignItems: "center",
       justifyContent: "center",
-      flexDirection: 'row'
+      flexDirection: 'row',
+      borderRadius: 5
     },
     buttonText: {
       color: "#FFF",
-      fontSize: 18
+      fontSize: 18,
+      fontWeight: 'bold'
     },
     forgotPasswordText: {
       color: "white",
