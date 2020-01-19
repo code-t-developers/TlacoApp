@@ -1,5 +1,8 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import {createAppContainer} from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+
+
 import MonumentosGridScreen from '../screens/monumentosGridScreen';
 import Login from '../screens/login';
 import Monumento from '../screens/Monumento';
@@ -56,4 +59,14 @@ const Navigator = createStackNavigator(
     }
 );
 
-export default createAppContainer(Navigator);
+const MainNavigator = createDrawerNavigator ({
+    Inicio : Navigator,
+    Login : {
+        screen: Login,
+        navigationOptions : {
+            drawerLabel: 'Cerrar sesión'
+        }
+    }
+});
+
+export default createAppContainer(MainNavigator);

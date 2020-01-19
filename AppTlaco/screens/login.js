@@ -40,7 +40,10 @@ const Login = props =>{
           state.name=result.user.name;
           state.photoUrl= result.user.photoUrl;
           
-          props.navigation.navigate({routeName: 'Perfil', otherParam: state.name, otherParam: state.photoUrl});
+          props.navigation.replace('Perfil', {params: {
+            name : state.name, 
+            photoUrl: state.photoUrl
+          }});
       }
     } catch (e) {
         console.log("error", e)
@@ -72,7 +75,11 @@ const Login = props =>{
         state.name = info.name;
         state.photoUrl = info.picture.data.url;
 
-        props.navigation.navigate({routeName: 'Perfil', otherParam: state.name, otherParam: state.photoUrl});
+        //DEBE REEMPLAZARSE POR LA FUNCIÓN replace() YA QUE NO DA LA OPCIÓN DE PODER REGRESAR A LA PANTALLA ANTERIOR.
+        props.navigation.replace('Perfil', {params: {
+          name : state.name, 
+          photoUrl: state.photoUrl
+        }});
       } else {
         // type === 'cancel'
         Alert.alert("Ups!", "");

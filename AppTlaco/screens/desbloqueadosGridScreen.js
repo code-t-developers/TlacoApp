@@ -11,24 +11,34 @@ import {
 
 import {CATEGORIES} from '../data/datos';
 import MonumentosGridTitle from '../components/MonumentosGridTitle';
+import BloqueadoGridTitle from '../components/bloqueadoGridTitle';
 
 
 const DesbloqueadosGridScreen = props =>{
 	const renderGridItem=(itemData)=>{
-	return (
-		<MonumentosGridTitle 
-		title={itemData.item.title} 
-		color={itemData.item.color}
-		onSelect={() =>{
-			props.navigation.navigate(
-				{
-					routeName: 'Monumento',
-				}
+		if( itemData.item.status === 'DES'){
+			return (
+				<MonumentosGridTitle 
+					title={itemData.item.title} 
+					color={itemData.item.color}
+					onSelect={() =>{
+						props.navigation.navigate(
+							{
+								routeName: 'Monumento',
+							}
+						);
+					}}
+				/>
 			);
-		}}
-		/>
+		}
+
+		return (
+			<BloqueadoGridTitle 
+				title={itemData.item.title} 
+				color={itemData.item.color}
+			/>
 		);
-}
+	}
 
 	return(
 
@@ -37,7 +47,7 @@ const DesbloqueadosGridScreen = props =>{
 		data={CATEGORIES}
 		renderItem={renderGridItem}
 		numColumns={2} />
-		);
+	);
 };
 /*
 CategoriesScreen.navigationOptions = {

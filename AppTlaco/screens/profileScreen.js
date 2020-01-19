@@ -10,8 +10,12 @@ import {
   ScrollView,
   Dimensions
 } from 'react-native';
+import { DrawerActions } from 'react-navigation-drawer'
+import { HeaderButtons, Item} from 'react-navigation-header-buttons';
+
 import MyQRScanner from '../components/MyQRScanner';
 import Botones from '../components/Botones';
+import HeaderButton from '../components/HeaderButton';
 
 const background = require("../images/back.jpg");
 
@@ -133,6 +137,23 @@ const ProfileScreen = props => {
   );
   
 };
+
+
+
+ProfileScreen.navigationOptions = navData =>{
+  return {
+    headerLeft : () => (<HeaderButtons HeaderButtonComponent = {HeaderButton}>
+      <Item 
+        title = "Menu"
+        iconName = 'ios-menu'
+        onPress = {() => {
+          navData.navigation.dispatch(DrawerActions.toggleDrawer());
+        }}
+      />
+    </HeaderButtons>)
+  };
+}
+
 
 const styles = StyleSheet.create({
    header:{
