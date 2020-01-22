@@ -8,10 +8,13 @@ import {
   TouchableOpacity,
   Platform
 } from 'react-native';
+import { DrawerActions } from 'react-navigation-drawer'
+import { HeaderButtons, Item} from 'react-navigation-header-buttons';
 
 import {CATEGORIES} from '../data/datos';
 import MonumentosGridTitle from '../components/MonumentosGridTitle';
 import BloqueadoGridTitle from '../components/bloqueadoGridTitle';
+import HeaderButton from '../components/HeaderButton';
 
 
 const DesbloqueadosGridScreen = props =>{
@@ -49,6 +52,20 @@ const DesbloqueadosGridScreen = props =>{
 		numColumns={2} />
 	);
 };
+
+DesbloqueadosGridScreen.navigationOptions = navData =>{
+	return {
+	  headerLeft : () => (<HeaderButtons HeaderButtonComponent = {HeaderButton}>
+		<Item 
+		  title = "Menu"
+		  iconName = 'ios-menu'
+		  onPress = {() => {
+			navData.navigation.dispatch(DrawerActions.toggleDrawer());
+		  }}
+		/>
+	  </HeaderButtons>)
+	};
+}
 /*
 CategoriesScreen.navigationOptions = {
 	headerTitle: 'Meal Categories'

@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { DrawerActions } from 'react-navigation-drawer'
 import { HeaderButtons, Item} from 'react-navigation-header-buttons';
+import { NavigationActions } from 'react-navigation';
 
 import MyQRScanner from '../components/MyQRScanner';
 import Botones from '../components/Botones';
@@ -47,17 +48,12 @@ const ProfileScreen = props => {
 
           <Botones customFontSize = {13} title = "MONUMENTOS Y OBJETOS" myIcon = "md-unlock" 
             doThis = {() => {
-              props.navigation.navigate({routeName: 'MonumentosDesbloqueados'});
+              props.navigation.navigate(NavigationActions.navigate({
+                routeName: 'MonumentosObjetos'
+              }));
             }}
           />
-
-          <Botones style = {{marginTop: 10}} customFontSize = {13} title = "MONUMENTOS Y OBJETOS" myIcon = "md-lock" 
-            doThis = {() => {
-              props.navigation.navigate({routeName: 'MonumentosBloqueados'});
-            }}
-          />
-              
-              
+          
           <Botones style = {{marginTop: 10}} title = "MAPA" myIcon = "md-pin" 
             doThis = {() => {
               props.navigation.navigate({routeName: 'Mapa'});
