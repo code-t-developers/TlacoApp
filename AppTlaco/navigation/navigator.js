@@ -4,19 +4,20 @@ import {createStackNavigator} from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Ionicons } from '@expo/vector-icons';
-import { Dimensions } from 'react-native';
+import { Dimensions, Image } from 'react-native';
 
 
 import MonumentosGridScreen from '../screens/monumentosGridScreen';
 import Login from '../screens/login';
 import Monumento from '../screens/Monumento';
-import aboutUsScreen from '../screens/aboutUsScreen';
+import AboutUsScreen from '../screens/AboutUsScreen';
 import bloqueadosGridScreen from '../screens/bloqueadosGridScreen';
 import desbloqueadosGridScreen from '../screens/desbloqueadosGridScreen';
 import MapsScreen from '../screens/MapsScreen';
 import objetosGridScreen from '../screens/objetosGridScreen';
 import profileScreen from '../screens/profileScreen';
-import AboutUsScreen from '../screens/aboutUsScreen';
+import SliderBar from '../components/SliderBar';
+import MyQRScanner from '../components/MyQRScanner';
 
 const MonumentosObjetosNavigator = createStackNavigator ({
     MonumentosObjetos : {
@@ -44,10 +45,6 @@ const Navigator = createStackNavigator(
             screen: MonumentosGridScreen,
         },
 
-        Nosotros : {
-            screen: aboutUsScreen,
-        },
-
         MonumentosBloqueados: {
             screen: bloqueadosGridScreen,
         },
@@ -65,10 +62,25 @@ const Navigator = createStackNavigator(
             navigationOptions : {
                 headerTitle : 'Inicio',
             }
+        },
+
+        Scanner : {
+            screen: MyQRScanner,
+            navigationOptions : {
+                headerTitle: 'Escanear código QR'
+            }
         }
     }
 );
 
+const AboutUsNavigator = createStackNavigator({
+    AboutUsS: {
+        screen: AboutUsScreen,
+        navigationOptions: {
+            headerTitle: 'Nosotros'
+        }
+    }
+});
 
 const MainNavigator = createDrawerNavigator ({
     Inicio : {
@@ -82,9 +94,26 @@ const MainNavigator = createDrawerNavigator ({
     MonumentosYObjetos: {
         screen: MonumentosObjetosNavigator,
         navigationOptions : {
-            drawerLabel: 'Monumentos y objetos'
+            drawerLabel: 'Monumentos y objetos',
+            drawerIcon: () => (
+                <Image
+                    style = {{width : 20, height: 20}}
+                    source={require('../images/monumento.png')}
+                />
+            )
         }
     },
+
+    AboutUS : {
+        screen: AboutUsNavigator,
+        navigationOptions: {
+            drawerLabel: 'Nosotros',
+            drawerIcon : () => (
+                <Ionicons name = "ios-person" size = {20} color = 'black'/>
+            )
+        }
+    },
+
     LogOut : {
         screen: Login,
         navigationOptions : {
@@ -93,18 +122,22 @@ const MainNavigator = createDrawerNavigator ({
                 <Ionicons name = "ios-log-out" size = {20} color = 'black'/>
             )
         }
-    },
-
-    AboutUS : {
-        screen: AboutUsScreen,
-        navigationOptions: {
-            drawerLabel: 'Nosotros'
-        }
     }
 }, {
     drawerWidth: Dimensions.get("window").width * 0.75,
-    drawerType: 'slide'
-   // hideStatusBar: true
+    drawerType: 'slide',
+    contentOptions : {
+        itemsContainerStyle : {
+            marginTop : 16,
+            marginHorizontal : 8
+        },
+
+        itemStyle : {
+            borderRadius: 4
+        }
+    },
+
+    contentComponent: props => <SliderBar {...props}/>
 });
 
 export default createAppContainer(MainNavigator);

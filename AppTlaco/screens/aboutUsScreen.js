@@ -7,41 +7,59 @@ import {
   TouchableOpacity,
   ImageBackground
 } from 'react-native';
+import { HeaderButtons, Item} from 'react-navigation-header-buttons';
+import { DrawerActions } from 'react-navigation-drawer';
+
+import HeaderButton from '../components/HeaderButton';
+
 const background = require("../images/codet.jpg");
+
 const AboutUsScreen = props => {
-	
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Image style={{height:'100%'}} source={background}/>
+      </View>
 
-    return (
-      <View style={styles.container}>
-          <View style={styles.header}>
-          <Image style={{height:'100%'}} source={background}/>
-          </View>
-          <Image style={styles.avatar} source={background}/>
-          <View style={styles.body}>
-            <View style={styles.bodyContent}>
-              <Text style={styles.name}>
-              Code-T
-              </Text>
-              <Text style={styles.info}>
+      <Image style={styles.avatar} source={background}/>
+      <View style={styles.body}>
+        <View style={styles.bodyContent}>
+          <Text style={styles.name}>
+            Code-T
+          </Text>
+              
+          <Text style={styles.info}>
 
-              </Text>
-              <Text style={styles.description}>
-              	Code-T es una empresa de desarrollo de 
-              	software formada por un grupo de jóvenes programadores y 
-              	desarrolladores entusiastas que a través de sus habilidades y
-              	conocimientos llevan a cabo la creación de software orientado a
-              	las necesidades del cliente.
-              </Text>
+          </Text>
+
+          <Text style={styles.description}>
+            Code-T es una empresa de desarrollo de 
+          	software formada por un grupo de jóvenes programadores y 
+          	desarrolladores entusiastas que a través de sus habilidades y
+          	conocimientos llevan a cabo la creación de software orientado a
+          	las necesidades del cliente.
+          </Text>
                            
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color:'white'}}>Atras</Text> 
-              </TouchableOpacity>
-            </View>
         </View>
       </View>
-    );
+    </View>
+  );
   
 };
+
+AboutUsScreen.navigationOptions = navData =>{
+  return {
+    headerLeft : () => (<HeaderButtons HeaderButtonComponent = {HeaderButton}>
+      <Item 
+        title = "Menu"
+        iconName = 'ios-menu'
+        onPress = {() => {
+          navData.navigation.dispatch(DrawerActions.toggleDrawer());
+        }}
+      />
+    </HeaderButtons>)
+  };
+}
 
 const styles = StyleSheet.create({
   header:{
@@ -87,7 +105,7 @@ const styles = StyleSheet.create({
     fontSize:16,
     color: "#696969",
     marginTop:10,
-    textAlign: 'center',
+    textAlign: 'justify',
     marginVertical: '5%'
   },
   buttonContainer: {

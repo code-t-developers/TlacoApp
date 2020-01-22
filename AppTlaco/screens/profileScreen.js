@@ -21,7 +21,6 @@ import HeaderButton from '../components/HeaderButton';
 const background = require("../images/back.jpg");
 
 const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
 
 const ProfileScreen = props => {
 
@@ -33,7 +32,6 @@ const ProfileScreen = props => {
 
   return (
     <ScrollView style={styles.container}>
-      <MyQRScanner visible = {modalState} onCancel = { () => setModalState(false)}/>
 
       <View style={styles.header}>
         <Image style={{flex: 1,height:'100%', resizeMode: 'stretch'}} source={background}/>
@@ -60,7 +58,7 @@ const ProfileScreen = props => {
             }}
           />
 
-          <Botones style = {{marginTop: 10}} doThis = {callQRScanner} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
+          <Botones style = {{marginTop: 10}} doThis = {() => {props.navigation.navigate('Scanner')}} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
 
         </View>
 
@@ -143,7 +141,10 @@ ProfileScreen.navigationOptions = navData =>{
         title = "Menu"
         iconName = 'ios-menu'
         onPress = {() => {
-          navData.navigation.dispatch(DrawerActions.toggleDrawer());
+          navData.navigation.dispatch(DrawerActions.toggleDrawer(), {params: {
+            name : state.name,
+            photoUrl: state.photoUrl
+          }});
         }}
       />
     </HeaderButtons>)

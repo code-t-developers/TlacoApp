@@ -53,7 +53,8 @@ const MyQRScanner = props => {
     }
     
     return (
-        <Modal visible = {props.visible} animationType = "slide" onShow = {moveScanLine}>
+        <View style = {styles.container}>
+        {/*<Modal visible = {props.visible} animationType = "slide" onShow = {moveScanLine}>*/}
             <View style = {styles.textContainer}>
                 <Text 
                     style = {{fontSize: 16, fontWeight: 'bold'}}
@@ -83,11 +84,16 @@ const MyQRScanner = props => {
             <View style = {styles.buttonContainer}>
                 <Botones title = "CANCELAR" doThis = {props.onCancel} myIcon = "md-close"/>
             </View>
-        </Modal>
+        {/*</Modal>*/}
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
+    container : {
+        flex: 1
+    },
+
     textContainer : {
         alignItems: 'center', 
         marginTop: 10, 
