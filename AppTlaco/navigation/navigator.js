@@ -30,6 +30,13 @@ const MonumentosObjetosNavigator = createStackNavigator ({
     Monumento: {
         screen: Monumento,
     },
+
+    Scanner2 : {
+        screen: MyQRScanner,
+        navigationOptions : {
+            headerTitle: 'Escanear código QR'
+        }
+    }
 });
 
 const Navigator = createStackNavigator(

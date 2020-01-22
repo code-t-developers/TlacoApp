@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Modal, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import Botones from '../components/Botones';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { NavigationActions } from 'react-navigation';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -42,7 +43,8 @@ const MyQRScanner = props => {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        props.navigation.navigate({routeName : 'Monumento', action: props.navigation.goBack(null)});
     };
 
     if (hasPermission === null) {
@@ -54,7 +56,6 @@ const MyQRScanner = props => {
     
     return (
         <View style = {styles.container}>
-        {/*<Modal visible = {props.visible} animationType = "slide" onShow = {moveScanLine}>*/}
             <View style = {styles.textContainer}>
                 <Text 
                     style = {{fontSize: 16, fontWeight: 'bold'}}
@@ -63,28 +64,15 @@ const MyQRScanner = props => {
                 </Text>
                 <Text>Y CONOCE MÁS SOBRE ÉL</Text>
             </View>
-            <View style = {styles.viewScanner}>
+
+            <View>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     style={StyleSheet.absoluteFill}
                 />
-                <View
-                    
-                    style = {{
-                        height: 1,
-                        width: '100%',
-                        backgroundColor: 'red',
-                        marginTop: scanLine
-                    }}
-                />
-                <Text style = {styles.scannerContainer}></Text>
+                <TouchableOpacity style = {styles.scannerContainer}></TouchableOpacity>
                 
             </View>
-
-            <View style = {styles.buttonContainer}>
-                <Botones title = "CANCELAR" doThis = {props.onCancel} myIcon = "md-close"/>
-            </View>
-        {/*</Modal>*/}
         </View>
     );
 }
@@ -96,27 +84,25 @@ const styles = StyleSheet.create({
 
     textContainer : {
         alignItems: 'center', 
-        marginTop: 10, 
-        backgroundColor: 'orange',
+        marginTop: 40, 
+      //  backgroundColor: 'orange',
         width: '95%',
         alignSelf: 'center',
         borderRadius: 8
     },
 
     viewScanner : {
-        marginTop: 20, 
-        borderWidth: 5.25, 
-        width: '88.194%', 
-        height: '77.601%', 
-        alignSelf: 'center', 
-        borderRadius: 8
+        borderWidth: 0.3,
+        borderColor: 'yellow',
+        width: '50%',
+        height: '10%',
+        alignSelf: 'center',
+        
     },
 
     scannerContainer : {
-        width : '90%',
-        height : '80%',
-        maxWidth : '90%',
-        alignSelf: 'center',
+        width : screenWidth,
+        height : screenHeight,
     },
 
     buttonContainer : {

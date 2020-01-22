@@ -36,8 +36,6 @@ const Monumento = props => {
 
     return (
         <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}>
-    
-            <MyQRScanner visible = {modalState} onCancel = {cancelScan}/>
                 
             <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center'}}>
     
@@ -145,7 +143,7 @@ const Monumento = props => {
             </View>
     
             <View style = {styles.contenedorBotones}>
-                <Botones doThis = {callQRScanner} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
+                <Botones doThis = {() => {props.navigation.navigate('Scanner2')}} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
                 <Botones title = "INICIO" myIcon = "md-home" doThis = {() => {
                     props.navigation.navigate({routeName: 'Perfil'});
                 }}
