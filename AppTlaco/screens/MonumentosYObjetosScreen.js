@@ -17,7 +17,7 @@ import BloqueadoGridTitle from '../components/bloqueadoGridTitle';
 import HeaderButton from '../components/HeaderButton';
 
 
-const DesbloqueadosGridScreen = props =>{
+const MonumentosYObjetosScreen = props =>{
 	const renderGridItem=(itemData)=>{
 		if( itemData.item.status === 'DES'){
 			return (
@@ -53,7 +53,7 @@ const DesbloqueadosGridScreen = props =>{
 	);
 };
 
-DesbloqueadosGridScreen.navigationOptions = navData =>{
+MonumentosYObjetosScreen.navigationOptions = navData =>{
 	return {
 	  headerLeft : () => (<HeaderButtons HeaderButtonComponent = {HeaderButton}>
 		<Item 
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default DesbloqueadosGridScreen;
+export default MonumentosYObjetosScreen;

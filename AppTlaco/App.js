@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Monumento from './screens/Monumento';
-import MonumentosGridScreen from './screens/monumentosGridScreen';
 import Navigator from './navigation/navigator';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';

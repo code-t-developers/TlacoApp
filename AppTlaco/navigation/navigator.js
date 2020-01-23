@@ -6,22 +6,18 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { Dimensions, Image } from 'react-native';
 
-
-import MonumentosGridScreen from '../screens/monumentosGridScreen';
 import Login from '../screens/login';
 import Monumento from '../screens/Monumento';
 import AboutUsScreen from '../screens/AboutUsScreen';
-import bloqueadosGridScreen from '../screens/bloqueadosGridScreen';
-import desbloqueadosGridScreen from '../screens/desbloqueadosGridScreen';
+import MonumentosYObjetosScreen from '../screens/MonumentosYObjetosScreen';
 import MapsScreen from '../screens/MapsScreen';
-import objetosGridScreen from '../screens/objetosGridScreen';
 import profileScreen from '../screens/profileScreen';
 import SliderBar from '../components/SliderBar';
 import MyQRScanner from '../components/MyQRScanner';
 
 const MonumentosObjetosNavigator = createStackNavigator ({
     MonumentosObjetos : {
-        screen: desbloqueadosGridScreen,
+        screen: MonumentosYObjetosScreen,
         navigationOptions : {
             headerTitle: 'Monumentos y objetos'
         }
@@ -48,20 +44,8 @@ const Navigator = createStackNavigator(
             }
         },
 
-        Monumentos: {
-            screen: MonumentosGridScreen,
-        },
-
-        MonumentosBloqueados: {
-            screen: bloqueadosGridScreen,
-        },
-
         Mapa : {
             screen: MapsScreen,
-        },
-
-        Objeto : {
-            screen: objetosGridScreen,
         },
 
         Perfil: {

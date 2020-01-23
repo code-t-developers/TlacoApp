@@ -14,7 +14,6 @@ import { DrawerActions } from 'react-navigation-drawer'
 import { HeaderButtons, Item} from 'react-navigation-header-buttons';
 import { NavigationActions } from 'react-navigation';
 
-import MyQRScanner from '../components/MyQRScanner';
 import Botones from '../components/Botones';
 import HeaderButton from '../components/HeaderButton';
 
@@ -23,12 +22,6 @@ const background = require("../images/back.jpg");
 const screenWidth = Dimensions.get('window').width;
 
 const ProfileScreen = props => {
-
-  const [modalState, setModalState] = useState(false);
-  
-  const callQRScanner = () => {
-    setModalState(true);
-  }
 
   return (
     <ScrollView style={styles.container}>
