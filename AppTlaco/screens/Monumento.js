@@ -2,17 +2,14 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, ScrollView, Image, FlatList, View, Alert, Button, Dimensions } from 'react-native';
 import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
-import MyQRScanner from '../components/MyQRScanner';
 import ModalsAppTlaco from '../modals/modalsAppTlaco';
 import { Video } from 'expo-av';
 //import { Trans } from 'react-i18next';
 
 const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
 
 const Monumento = props => {
     const [confirmed, setConfirmed] = useState(false);
-    const [modalState, setModalState] = useState(false);
 
     const confirm = () => {
     
@@ -27,13 +24,6 @@ const Monumento = props => {
         );
     }
 
-    const callQRScanner = () => {
-        setModalState(true);
-    }
-
-    const cancelScan = () => {setModalState(false);}
-
-
     return (
         <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}>
                 
@@ -44,7 +34,7 @@ const Monumento = props => {
                         style={styles.estiloImagen}
                         source={require('../images/sanMiguelito.jpg')}
                     />
-                    <View style = {{borderWidth: 0.3, flex: 1, paddingLeft: 10, opacity: 0.7}}>
+                    <View style = {styles.footerImageContainer}>
                         <Text>Por: Shivo dd</Text>
                     </View>
                 </View>
@@ -54,7 +44,7 @@ const Monumento = props => {
                         style={styles.estiloImagen}
                         source={require('../images/sanMiguelito.jpg')}
                     />
-                    <View style = {{borderWidth: 0.3, flex: 1, paddingLeft: 10, opacity: 0.7}}>
+                    <View style = {styles.footerImageContainer}>
                         <Text>Por: Shivo</Text>
                     </View>
                 </View>
@@ -65,7 +55,7 @@ const Monumento = props => {
                         style={styles.estiloImagen}
                         source={require('../images/sanMiguelito.jpg')}
                     />
-                    <View style = {{borderWidth: 0.3, flex: 1, paddingLeft: 10, opacity: 0.7}}>
+                    <View style = {styles.footerImageContainer}>
                         <Text>Por: Shivo ll</Text>
                     </View>
                 </View>
@@ -145,7 +135,7 @@ const Monumento = props => {
             <View style = {styles.contenedorBotones}>
                 <Botones doThis = {() => {props.navigation.navigate('Scanner2')}} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
                 <Botones title = "INICIO" myIcon = "md-home" doThis = {() => {
-                    props.navigation.navigate({routeName: 'Perfil'});
+                    props.navigation.navigate({routeName: 'Perfil', action: props.navigation.goBack(null)});
                 }}
                 />
             </View>
@@ -171,6 +161,8 @@ const styles = StyleSheet.create({
         height: 250,
         alignSelf: 'center',
         opacity: 0.9,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5
     },
 
     contenedorTexto: {
@@ -201,6 +193,15 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignSelf: 'center',
         marginTop: 10
+    },
+
+    footerImageContainer: {
+        borderWidth: 0.3, 
+        flex: 1, 
+        paddingLeft: 10, 
+        opacity: 0.7, 
+        borderBottomEndRadius: 5, 
+        borderBottomLeftRadius: 5
     }
 });
 
