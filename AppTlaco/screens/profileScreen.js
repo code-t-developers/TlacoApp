@@ -16,12 +16,24 @@ import { NavigationActions } from 'react-navigation';
 
 import Botones from '../components/Botones';
 import HeaderButton from '../components/HeaderButton';
+import Promociones from '../components/Promociones';
+import { FlatList } from 'react-native-gesture-handler';
+import {PROMODATA} from '../data/promociones';
 
 const background = require("../images/back.jpg");
 
 const screenWidth = Dimensions.get('window').width;
 
 const ProfileScreen = props => {
+  const renderPromoHandler = (itemData) => {
+    return (
+      <Promociones 
+        nombrePromo = {itemData.item.nombrePromo}
+        local = {itemData.item.local}
+        descripcion = {itemData.item.descripcion}
+      />
+    );
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -37,7 +49,7 @@ const ProfileScreen = props => {
   <Text style={styles.name}>{state.name}</Text>
           <Text style={styles.info}>Puntaje: 2500</Text>
 
-          <Botones customFontSize = {13} title = "MONUMENTOS Y OBJETOS" myIcon = "md-unlock" 
+          <Botones customFontSize = {13} title = "MONUMENTOS Y OBJETOS" myImageIcon = {require('../images/monumentoBlanco.png')}
             doThis = {() => {
               props.navigation.navigate(NavigationActions.navigate({
                 routeName: 'MonumentosObjetos'
@@ -55,66 +67,15 @@ const ProfileScreen = props => {
 
         </View>
 
-        <View style={styles.promocionesContainer}>
+       <View style={styles.promocionesContainer}>
           <Text style={styles.name}>Promociones</Text>
-             
-          <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{alignContent : 'center', margin: 20}}>
-            <View style = {{paddingEnd : 10, width: '20.5%'}}>
-              <Image
-                style={styles.estiloImagen}
-                source={require('../images/fridaMezcaleria.jpg')}
-              />
 
-              <View style = {styles.containerTextoPromociones}>
-                <Text style={styles.textoTituloPromociones}>Frappe Gratis</Text>
-                <Text style={styles.textoPromociones}>K-Fecito</Text>
-                <View style = {{width: '90%'}}>
-                <Text style={styles.textoDescripcionPromociones}>
-                  ¡Gana 5 tacos de pastor! Sólo contesta la trivia y escanea el cógido QR que se encuentra en el establecimiento
-                </Text>
-                </View>
-                {/** 
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={{color:'white'}}>Ingresar promoción</Text> 
-                </TouchableOpacity>
-                */}
-                <Botones style = {{marginTop: 15}} title = "INGRESAR PROMOCIÓN" myIcon = "md-add"/>
-              </View>
-            </View>
-
-            <View style = {{paddingEnd : 10}}>
-              <Image
-                style={styles.estiloImagen}
-                source={require('../images/fridaMezcaleria.jpg')}
-              />
-              <View style = {styles.containerTextoPromociones}>
-                <Text style={styles.textoTituloPromociones}>Shots Gratis</Text>
-                <Text style={styles.textoPromociones}>Frida Mezcaleria</Text>
-                <Text style={styles.textoDescripcionPromociones}>
-                  ¡Ganate 5 tacos de pastor! {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento
-                </Text>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={{color:'white'}}>Ingresar promoción</Text> 
-                </TouchableOpacity>
-              </View>
-            </View>
-                
-            <View style = {{paddingEnd : 10}}>
-              <Image
-                style={styles.estiloImagen}
-                source={require('../images/fridaMezcaleria.jpg')}
-              />
-              <View style = {styles.containerTextoPromociones}>
-                <Text style={styles.textoTituloPromociones}>5 tacos de pastor Gratis</Text>
-                <Text style={styles.textoDescripcionPromociones}>Ganate 5 tacos de pastor {"\n"} contestando la trivia y escaneando {"\n"} el cógido qr que se encuentra en el {"\n"} establecimiento</Text>
-                <Text style={styles.textoPromociones}>Tacos: el pastorcito</Text>
-                <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={{color:'white'}}>Ingresar promoción</Text> 
-                </TouchableOpacity>
-              </View>
-            </View>
-                
-          </ScrollView>
+          <FlatList 
+            keyExtractor={(item,index) => item.id}
+            data={PROMODATA}
+            renderItem={renderPromoHandler}
+            horizontal = {true}
+          />
           
           <Text style = {{marginBottom: 15}}>Made by: Code-T</Text>
         </View>
