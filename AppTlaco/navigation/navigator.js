@@ -15,6 +15,19 @@ import profileScreen from '../screens/profileScreen';
 import SliderBar from '../components/SliderBar';
 import MyQRScanner from '../components/MyQRScanner';
 
+import ModalsAppTlaco from '../modals/modalsAppTlaco';
+
+const ComercialStack = createStackNavigator ({
+    MyModal : {
+        screen: ModalsAppTlaco,
+        navigationOptions: {
+            cardStyle: {backgroundColor: 'transparent'}
+        }
+    }
+}, {
+    headerMode: 'none',
+});
+
 const MonumentosObjetosNavigator = createStackNavigator ({
     MonumentosObjetos : {
         screen: MonumentosYObjetosScreen,
@@ -25,6 +38,14 @@ const MonumentosObjetosNavigator = createStackNavigator ({
 
     Monumento: {
         screen: Monumento,
+    },
+
+    ComercialModal : {
+        screen: ComercialStack,
+        navigationOptions: {
+            headerShown: false,
+            cardStyle: {backgroundColor: 'transparent'}
+        }
     },
 
     Scanner2 : {

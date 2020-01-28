@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, ScrollView, Image, FlatList, View, Alert, Button, Dimensions } from 'react-native';
 import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
@@ -9,20 +9,23 @@ import { Video } from 'expo-av';
 const screenWidth = Dimensions.get('window').width;
 
 const Monumento = props => {
-    const [confirmed, setConfirmed] = useState(false);
+    const showComercial = props.navigation.getParam('comercialView');
 
-    const confirm = () => {
-    
-        setConfirmed(true);
-    };
+    const name = props.navigation.getParam('name');
+    const photoUrl = props.navigation.getParam('photoUrl');
 
     let comercial;
 
-    if (confirmed) {
-        comercial = (
-            <ModalsAppTlaco state={true}/>
-        );
-    }
+    setTimeout(() => {
+        if (showComercial) {
+            comercial = (
+                 <ModalsAppTlaco state={true}/>
+            );
+            props.navigation.navigate('ComercialModal');
+        }
+    }, 1000);
+    
+    
 
     return (
         <ScrollView showsVerticalScrollIndicator = {false} style = {styles.contenedorComponentes}>
@@ -139,8 +142,6 @@ const Monumento = props => {
                 }}
                 />
             </View>
-    
-            {comercial}
         </ScrollView>
     );
 

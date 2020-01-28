@@ -63,7 +63,13 @@ const ProfileScreen = props => {
             }}
           />
 
-          <Botones style = {{marginTop: 10}} doThis = {() => {props.navigation.navigate('Scanner')}} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
+          <Botones style = {{marginTop: 10}} doThis = {() => {props.navigation.navigate({
+            routeName: 'Scanner',
+            params: {
+              name: state.name,
+              photoUrl: state.photoUrl
+            }
+            })}} title = "ESCANEAR" myIcon = "md-qr-scanner"/>
 
         </View>
 

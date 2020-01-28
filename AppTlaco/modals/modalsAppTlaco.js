@@ -8,11 +8,12 @@ class ModalsAppTlaco extends Component{
           visibility: true,
         };
       }
-
+      
       setModalVisibility(visible) {
         this.setState({
           visibility: visible,
         });
+        this.props.navigation.goBack(null);
       }
     
       render() {
