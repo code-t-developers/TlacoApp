@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Vibration, ActivityIndicator } from 'react-native';
 import Botones from '../components/Botones';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
@@ -12,26 +12,10 @@ const screenHeight = Dimensions.get('window').height;
 const MyQRScanner = props => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    const [scanLine, setScanLine] = useState(0);
+    const [showLoading, setShowLoading] = useState(false);
 
-    const moveScanLine = () => {
-        let aux = 90;
-       // setScanLine(90);
-
-       /*
-        while (!scanned){
-            setScanLine(aux);
-            aux += 10;
-
-            if(aux > 451 )
-                aux = 90;
-            
-            console.log("scanLine, aux");
-        }
-
-        console.log("hola");
-        */
-        
+    state = {
+        comercial : true
     }
 
     useEffect(() => {
@@ -41,14 +25,36 @@ const MyQRScanner = props => {
         })();
     }, []);
 
+
     const handleBarCodeScanned = ({ type, data }) => {
+        setShowLoading(true);
         setScanned(true);
+        Vibration.vibrate(200);
+        
         //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-        props.navigation.navigate({routeName : 'Monumento', action: props.navigation.goBack(null)});
+
+        setTimeout(() => {
+            props.navigation.navigate({
+                routeName : 'Monumento', 
+                action: [
+                    props.navigation.back(null)
+                ],
+                params : {
+                    comercialView : state.comercial
+                }
+            });
+        }, 100);
+        
     };
 
+
     if (hasPermission === null) {
-        return <Text>Requesting for camera permission</Text>;
+        //return <Text>Requesting for camera permission</Text>;
+        return (
+            <View style={styles.loading}>
+                    <ActivityIndicator animating = {true} size="large" />
+            </View>
+        );
     }
     if (hasPermission === false) {
         return <Text>No access to camera</Text>;
@@ -56,6 +62,7 @@ const MyQRScanner = props => {
     
     return (
         <View style = {styles.container}>
+            
             <View style = {styles.textContainer}>
                 <Text 
                     style = {{fontSize: 16, fontWeight: 'bold'}}
@@ -73,6 +80,12 @@ const MyQRScanner = props => {
                 <TouchableOpacity style = {styles.scannerContainer}></TouchableOpacity>
                 
             </View>
+
+            <View style={styles.loading}>
+            {showLoading ? <ActivityIndicator animating = {true} size="large" /> : 
+            undefined}
+            </View>
+            
         </View>
     );
 }
@@ -82,10 +95,19 @@ const styles = StyleSheet.create({
         flex: 1
     },
 
+    loading : {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
     textContainer : {
         alignItems: 'center', 
         marginTop: 40, 
-      //  backgroundColor: 'orange',
         width: '95%',
         alignSelf: 'center',
         borderRadius: 8
@@ -96,8 +118,7 @@ const styles = StyleSheet.create({
         borderColor: 'yellow',
         width: '50%',
         height: '10%',
-        alignSelf: 'center',
-        
+        alignSelf: 'center', 
     },
 
     scannerContainer : {
