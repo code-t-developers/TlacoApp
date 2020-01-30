@@ -15,22 +15,29 @@ import {CATEGORIES} from '../data/datos';
 import MonumentosGridTitle from '../components/MonumentosGridTitle';
 import BloqueadoGridTitle from '../components/bloqueadoGridTitle';
 import HeaderButton from '../components/HeaderButton';
+import ajax from '../services/FetchMonumento';
 
 
 const MonumentosYObjetosScreen = props =>{
+	const selectMonumentHandle = async ()  => {
+		const response = await ajax.FetchMonumento();
+
+		props.navigation.navigate(
+			{
+				routeName: 'Monumento',
+				params : {
+					monumentoInfo : response
+				}
+			}
+		);
+	}
 	const renderGridItem=(itemData)=>{
 		if( itemData.item.status === 'DES'){
 			return (
 				<MonumentosGridTitle 
 					title={itemData.item.title} 
 					color={itemData.item.color}
-					onSelect={() =>{
-						props.navigation.navigate(
-							{
-								routeName: 'Monumento',
-							}
-						);
-					}}
+					onSelect={selectMonumentHandle}
 				/>
 			);
 		}
@@ -66,10 +73,6 @@ MonumentosYObjetosScreen.navigationOptions = navData =>{
 	  </HeaderButtons>)
 	};
 }
-/*
-CategoriesScreen.navigationOptions = {
-	headerTitle: 'Meal Categories'
-	}*/
 
 const styles = StyleSheet.create({
 	screen: {

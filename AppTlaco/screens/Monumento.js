@@ -4,6 +4,7 @@ import Botones from '../components/Botones';
 import Titulo from '../components/Titulo';
 import ModalsAppTlaco from '../modals/modalsAppTlaco';
 import { Video } from 'expo-av';
+import ajax from '../services/FetchMonumento';
 //import { Trans } from 'react-i18next';
 
 const screenWidth = Dimensions.get('window').width;
@@ -11,10 +12,15 @@ const screenWidth = Dimensions.get('window').width;
 const Monumento = props => {
     const showComercial = props.navigation.getParam('comercialView');
 
-    const name = props.navigation.getParam('name');
+    const monumentoInfo = props.navigation.getParam('monumentoInfo');
     const photoUrl = props.navigation.getParam('photoUrl');
 
     let comercial;
+    
+
+    state = {
+        monumento : []
+    }
 
     setTimeout(() => {
         if (showComercial) {
@@ -25,6 +31,12 @@ const Monumento = props => {
         }
     }, 1000);
     
+
+    const getMonumentoInfo = async () => {
+        const monumento = await ajax.FetchMonumento();
+        state.monumento = monumento;
+        console.log("Hola: ", monumento);
+    }
     
 
     return (
@@ -65,20 +77,22 @@ const Monumento = props => {
                     
             </ScrollView>
     
-            <Titulo titulo = "Iglesia de San Miguel Arcángel"/>
+            {monumentoInfo.length > 0 ? monumentoInfo.map(monumento => <Titulo titulo = {monumento.nombre}/>) : <Text>hola</Text>}
+            
     
             <View style = {styles.contenedorTexto}>
                 <Text style = {styles.estiloSeparador}>HISTORIA</Text>
             </View>
     
             <View >
-                <Text style = {styles.estiloTexto}>
-                    Tlacotalpan perteneció al territorio Totonaca en el siglo XII, por lo que su fundación se remonta a esa época. 
-                    Era cabecera de Atlizintla (hoy Alvarado), Xiuhbiapan, Ahuatcopan, Pozutlan y Tlazintlata, en el siglo XV, 
-                    luego de tomar Cempoala y Cotaxtla, Axayácatl sometió al antiguo asentamiento indígena al Imperio azteca en 1475, 
-                    en el contexto de la Conquista de Tochpan (Tuxpan) de 1480, y bautizó al asentamiento con el nombre de Tlācotālpan, 
-                    que significa: entre aguas.
-                </Text>
+                
+                {monumentoInfo.length > 0 ? 
+                    monumentoInfo.map(monumento => 
+                        <Text style = {styles.estiloTexto}>{monumento.descripcionEspaniol}</Text>
+                    ) : 
+                    <Text></Text>
+                }
+                
             </View>
     
             <View style = {styles.contenedorTexto}>
